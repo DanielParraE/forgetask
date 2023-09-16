@@ -45,9 +45,21 @@ pub fn scan_folder_from(location: &Path) -> Group {
         }
     }
     return Group {
-        name: String::from(location.file_name().unwrap().to_os_string().to_str().unwrap()),
+        name: String::from(location.file_name().unwrap().to_str().unwrap()),
         location: String::from(location.to_str().unwrap()),
         other_groups: groups,
         notes: other_notes
     }
 }
+
+pub fn read_contents_of(file_path: &Path) -> Result<Note, &str> {
+    if !file_path.exists() {
+        return Err("File doesn't exists.");
+    }
+    return Ok(Note {
+        name: String::from(file_path.file_name().unwrap().to_str().unwrap()),
+        location: String::from(file_path.to_str().unwrap()),
+        content: fs::read_to_string(file_path).unwrap()
+    })
+}
+

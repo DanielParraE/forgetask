@@ -1,7 +1,9 @@
 # forgetask
 
 Project to learn how to use Rust and Tauri because I have no idea how this works.
+
 Forgetask = forget + task
+
 App for task management, name chosen because forgetting things all day at a young age is the new meta.
 
 Features will be added later.
