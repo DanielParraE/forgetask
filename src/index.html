@@ -10,9 +10,20 @@
 </head>
 
 <body>
-  <section id="list-of-elements"></section>
-  <section id="content-of-note">
-    <textarea id="note-content"></textarea>
+  <section id="left-side-bar">
+    <section id="left-top-bar">
+      <input id="current_group" type="hidden" value="">
+      <button id="return-previous-group">
+        <img id="return-icon" src="./assets/return-icon.png" />
+      </button>
+    </section>
+    <section id="list-of-elements"></section>
+  </section>
+  <section id="right-side">
+    <section id="right-top-bar"></section>
+    <section id="content-of-note">
+      <textarea id="note-content"></textarea>
+    </section>
   </section>
 
   <template id="group-element-template">

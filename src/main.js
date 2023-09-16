@@ -1,8 +1,12 @@
 const { invoke } = window.__TAURI__.tauri;
+const { dataDir } = window.__TAURI__.path;
 
 const list_of_elements = `list-of-elements`
 const content_of_note = `content-of-note`
 const textarea_note_content = `note-content`
+const return_button = `return-previous-group`
+const current_group_input = `current_group`
+let data_dir_location = ``
 
 const read_note = async (location) => {
   const res = await invoke("read_note", { pathStr: location })
@@ -23,6 +27,7 @@ const initial_scan = async () => {
 
 const fill_list_of_elements = (elements) => {
   const template = document.querySelector("#group-element-template")
+  document.getElementById(current_group_input).value = elements.location
   elements.other_groups.forEach(element => {
     let clone = template.content.cloneNode(true)
     clone.querySelector("#name").textContent = element.name
@@ -44,9 +49,21 @@ const fill_list_of_elements = (elements) => {
   });
 }
 
+const previous_group = async () => {
+  const current = document.getElementById(current_group_input).value;
+  if (current === data_dir_location) {
+    return;
+  }
+  const res = await invoke(`previous_group`, { pathStr: current })
+  document.getElementById(list_of_elements).innerHTML = ''
+  fill_list_of_elements(res)
+}
+
 window.onload = async (e) => {
   e.preventDefault();
-  initial_scan()
+  data_dir_location = `${await dataDir()}forgetask`
+  initial_scan();
+  document.getElementById(return_button).onclick = previous_group;
 };
 
 

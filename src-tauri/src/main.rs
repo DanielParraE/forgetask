@@ -21,9 +21,14 @@ fn read_note(path_str: &str) -> functions::Note {
     return functions::read_contents_of(Path::new(path_str)).unwrap();
 }
 
+#[tauri::command]
+fn previous_group(path_str: &str) -> functions::Group {
+    return functions::scan_folder_from(Path::new(path_str).parent().unwrap());
+}
+
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![initial_scan, change_group, read_note])
+        .invoke_handler(tauri::generate_handler![initial_scan, change_group, read_note, previous_group])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

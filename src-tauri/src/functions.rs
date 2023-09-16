@@ -39,7 +39,7 @@ pub fn scan_folder_from(location: &Path) -> Group {
                 other_notes.push(Note {
                     name: entry.file_name().into_string().unwrap(),
                     location: entry.path().into_os_string().into_string().unwrap(),
-                    content: fs::read_to_string(entry.path().to_path_buf()).unwrap()
+                    content: String::from("")
                 })
             }
         }

@@ -12,6 +12,15 @@ body {
     flex-direction: row;
 }
 
+/* [ HERE STARTS THE STYLE FOR THE LEFT SIDE OF THE APP ] */
+
+#left-side-bar {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 #list-of-elements {
     background-color: whitesmoke;
     display: flex;
@@ -19,7 +28,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     bottom: 0;
-    width: 25%;
+    width: 100%;
     height: 100%;
     overflow-y: auto;
 }
@@ -46,8 +55,43 @@ body {
     width: 60px;
 }
 
-#content-of-note {
+#left-top-bar {
+    height: 50px;
+    min-height: 50px;
+    width: 100%;
+    background-color: lightgray;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 10px;
+}
+
+#left-top-bar button {
+    height: 45px;
+    min-height: 45px;
+    max-height: 45px;
+    width: 45%;
+    min-width: 45px;
+    max-width: 45px;
+    border: 1;
+    justify-content: center;
+    padding: 0;
+}
+
+#return-icon {
+    max-width: 100%;
+    min-width: 100%;
+}
+
+/* [ HERE STARTS THE STYLE FOR THE RIGHT SIDE OF THE APP ] */
+
+#right-side {
     width: 75%;
+    height: 100%;
+}
+
+#content-of-note {
+    width: 100%;
     height: 100%;
 }
 
@@ -55,4 +99,11 @@ body {
     width: 100%;
     height: 100%;
     font-family: 'Nanum Gothic', sans-serif;
+    resize: none;
+}
+
+#right-top-bar {
+    height: 50px;
+    width: 100%;
+    background-color: lightgray;
 }
