@@ -6,6 +6,7 @@ const content_of_note = `content-of-note`
 const textarea_note_content = `note-content`
 const return_button = `return-previous-group`
 const current_group_input = `current_group`
+const current_group_name_display = `group-name-display`
 let data_dir_location = ``
 
 const read_note = async (location) => {
@@ -28,6 +29,7 @@ const initial_scan = async () => {
 const fill_list_of_elements = (elements) => {
   const template = document.querySelector("#group-element-template")
   document.getElementById(current_group_input).value = elements.location
+  document.getElementById(current_group_name_display).textContent = elements.name
   elements.other_groups.forEach(element => {
     let clone = template.content.cloneNode(true)
     clone.querySelector("#name").textContent = element.name

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Ubuntu&display=swap');
 
 body, html {
     height: 100%;
@@ -106,4 +106,9 @@ body {
     height: 50px;
     width: 100%;
     background-color: lightgray;
+}
+
+#group-name-display {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: x-large;
 }
