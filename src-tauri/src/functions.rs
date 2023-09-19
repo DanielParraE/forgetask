@@ -63,3 +63,11 @@ pub fn read_contents_of(file_path: &Path) -> Result<Note, &str> {
     })
 }
 
+pub fn save_file(file_path: &Path, new_content: &str) -> bool {
+    if !file_path.exists() {
+        return false;
+    }
+    fs::write(file_path, new_content.as_bytes()).unwrap();
+    return true;
+}
+
