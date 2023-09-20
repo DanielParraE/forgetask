@@ -11,6 +11,7 @@ const close_current_note_button = `close-current-note`;
 const current_opened_note_name_display = `note-name-display`;
 const current_note_input = `current_note`;
 const save_current_note_button = `save-current-note`;
+const closed_note_message = `closed-note-message`;
 let data_dir_location = ``;
 
 const read_note = async (location) => {
@@ -18,6 +19,7 @@ const read_note = async (location) => {
   document.getElementById(current_opened_note_name_display).textContent = res.name.split(`.`)[0];
   document.getElementById(current_note_input).value = res.location;
   document.getElementById(textarea_note_content).value = res.content;
+  change_display_of_textarea(true);
 }
 
 const change_group = async (location) => {
@@ -74,6 +76,7 @@ const close_note = () => {
   document.getElementById(textarea_note_content).value = '';
   document.getElementById(current_opened_note_name_display).textContent = '';
   document.getElementById(current_note_input).value = '';
+  change_display_of_textarea(false);
 }
 
 const save_note = async () => {
@@ -83,7 +86,31 @@ const save_note = async () => {
   }
   const new_content = document.getElementById(textarea_note_content).value;
   const res = await invoke("save_note", { pathStr: current, newContent: new_content });
-  console.log(res)
+  if (!res) {
+    Swal.fire({
+      title: 'There was a problem when saving the note.',
+      icon: 'error',
+    });
+    return;
+  }
+  Swal.fire({
+    title: 'Note saved successfully.',
+    icon: 'success',
+  });
+}
+
+const change_display_of_textarea = (visibility) => {
+  if (visibility) {
+    document.getElementById(textarea_note_content).style.display = 'inline-block';
+    document.getElementById(close_current_note_button).style.display = 'inline-block';
+    document.getElementById(save_current_note_button).style.display = 'inline-block';
+    document.getElementById(closed_note_message).style.display = 'none';
+    return;
+  }
+  document.getElementById(textarea_note_content).style.display = 'none';
+  document.getElementById(close_current_note_button).style.display = 'none';
+  document.getElementById(save_current_note_button).style.display = 'none';
+  document.getElementById(closed_note_message).style.display = 'inline-block';
 }
 
 window.onload = async (e) => {
@@ -94,5 +121,3 @@ window.onload = async (e) => {
   document.getElementById(close_current_note_button).onclick = close_note;
   document.getElementById(save_current_note_button).onclick = save_note;
 };
-
-
