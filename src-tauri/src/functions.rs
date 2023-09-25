@@ -1,5 +1,6 @@
 
 use std::fs;
+use std::io::Write;
 use std::path::Path;
 
 use serde::Serialize;
@@ -68,6 +69,23 @@ pub fn save_file(file_path: &Path, new_content: &str) -> bool {
         return false;
     }
     fs::write(file_path, new_content.as_bytes()).unwrap();
+    return true;
+}
+
+pub fn create_file(file_path: &Path, content: &str) -> bool {
+    if file_path.exists() {
+        return false;
+    }
+    let mut f = fs::File::create(file_path).unwrap();
+    f.write_all(content.as_bytes()).unwrap();
+    return true;
+}
+
+pub fn create_folder(folder_path: &Path) -> bool {
+    if folder_path.exists() {
+        return false;
+    }
+    fs::create_dir(folder_path).unwrap();
     return true;
 }
 

@@ -31,9 +31,19 @@ fn save_note(path_str: &str, new_content: &str) -> bool {
     return functions::save_file(Path::new(path_str), new_content);
 }
 
+#[tauri::command]
+fn create_note(path_str: &str, content: &str) -> bool {
+    return functions::create_file(Path::new(path_str), content);
+}
+
+#[tauri::command]
+fn create_group(path_str: &str) -> bool {
+    return functions::create_folder(Path::new(path_str));
+}
+
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![initial_scan, change_group, read_note, previous_group, save_note])
+        .invoke_handler(tauri::generate_handler![initial_scan, change_group, read_note, previous_group, save_note, create_note, create_group])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

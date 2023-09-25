@@ -82,6 +82,11 @@ body {
     min-width: 100%;
 }
 
+#add-item-icon {
+    max-width: 100%;
+    min-width: 100%;
+}
+
 #group-name-display {
     font-family: 'Ubuntu', sans-serif;
     font-size: x-large;
@@ -158,4 +163,10 @@ body {
     font-family: 'Ubuntu', sans-serif;
     font-size: x-large;
     user-select: none;
+}
+
+/* Swal2 Styling */
+
+.swal2-popup {
+    font-family: 'Ubuntu', sans-serif;
 }
